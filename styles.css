@@ -206,30 +206,65 @@ footer {
 /* -----------------------------------------------------
    Kártya tartalom
 ----------------------------------------------------- */
+/* --- Kártya --- */
+.card {
+  --w: 320px;
+  flex: 1 1 var(--w);
+  max-width: 360px;
+  min-width: 260px;
+  background: linear-gradient(180deg, rgba(212,175,55,.09), transparent 130%), var(--card);
+  color: var(--text);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(212,175,55,.55);
+  box-shadow: 0 0 0 1px rgba(247,215,116,.18) inset, 0 6px 18px rgba(0,0,0,.45), 0 0 24px rgba(247,215,116,.12);
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* a tartalom középre kerül */
+  align-items: center;
+  height: 400px; /* minden kártya egységes magasságú */
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--gold-2);
+  box-shadow: 0 0 0 1px rgba(247,215,116,.32) inset, 0 12px 26px rgba(0,0,0,.6), 0 0 36px rgba(247,215,116,.22);
+  outline: none;
+}
+
+/* --- Kép --- */
 .media {
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 45%;
   background: #0b0c10;
-  display: grid;
-  place-items: center;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(212,175,55,.25);
 }
 
 .media img {
-  width: 100%;
-  height: 100%;
+  max-width: 90%;
+  max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,.45));
 }
 
+/* --- Tartalom --- */
 .content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* függőleges középre igazítás */
-  align-items: center;       /* vízszintes középre igazítás */
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 24px 16px;
-  height: 100%;              /* kitölti a rendelkezésre álló helyet */
+  padding: 16px;
   box-sizing: border-box;
+  height: 55%;
 }
 
 .title {
@@ -237,18 +272,19 @@ footer {
   font-weight: 700;
   letter-spacing: .2px;
   color: var(--gold-2);
-  text-shadow: 0 0 10px rgba(247, 215, 116, .25);
-  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(247,215,116,.25);
+  margin-bottom: 8px;
 }
 
 .desc {
   color: var(--muted);
   font-size: 14px;
-  white-space: pre-line;      /* több soros tördelés */
+  white-space: pre-line;
   overflow-wrap: anywhere;
   line-height: 1.5;
-  margin: 0;                  /* eltávolítja a felesleges margókat */
+  margin: 0;
 }
+
 
 
 /* -----------------------------------------------------
@@ -292,6 +328,7 @@ footer {
     transition: none;
   }
 }
+
 
 
 
