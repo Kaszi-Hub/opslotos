@@ -161,37 +161,42 @@ footer {
    Kártyarács (Casino grid)
 ----------------------------------------------------- */
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* mindig 3 oszlop */
+  gap: 20px;                             /* távolság a kártyák között */
+  justify-items: center;                 /* középre igazítás */
 }
 
 /* -----------------------------------------------------
    Kártya (mini, kompakt verzió)
 ----------------------------------------------------- */
 .card {
-  --w: 200px;
-  flex: 1 1 var(--w);
-  max-width: 240px;
-  min-width: 180px;
-  height: 280px; /* kisebb magasság */
+  width: 220px;               /* fix szélesség */
+  height: 280px;              /* fix magasság */
   background: linear-gradient(180deg, rgba(212,175,55,.09), transparent 130%), var(--card);
   color: var(--text);
   border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
   border: 1px solid rgba(212,175,55,.55);
+  text-decoration: none;
+  overflow: hidden;
   box-shadow:
     0 0 0 1px rgba(247,215,116,.18) inset,
-    0 4px 12px rgba(0,0,0,.45),
+    0 6px 14px rgba(0,0,0,.45),
     0 0 18px rgba(247,215,116,.12);
-  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold-2);
+  box-shadow:
+    0 0 0 1px rgba(247,215,116,.32) inset,
+    0 10px 22px rgba(0,0,0,.6),
+    0 0 28px rgba(247,215,116,.22);
 }
 
 .card:hover,
@@ -219,22 +224,21 @@ footer {
   max-width: 85%;
   max-height: 90%;
   object-fit: contain;
-  filter: drop-shadow(0 3px 8px rgba(0,0,0,.45));
 }
 
 /* --- Tartalom --- */
 .content {
-  flex: 1 0 55%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
   padding: 10px;
   box-sizing: border-box;
 }
 .title {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--gold-2);
   text-shadow: 0 0 8px rgba(247,215,116,.25);
@@ -243,18 +247,22 @@ footer {
 .desc {
   color: var(--muted);
   font-size: 12px;
-  line-height: 1.3;
+  line-height: 1.35;
   margin: 0;
   white-space: pre-line;
-  overflow-wrap: anywhere;
   text-align: center;
 }
 
-/* Mobilon nyúlhat, ha hosszabb szöveg van */
-@media (max-width: 600px) {
+/* -----------------------------------------------------
+   Mobil nézet: 1 oszlop
+----------------------------------------------------- */
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
   .card {
+    width: 90%;
     height: auto;
-    min-height: 260px;
   }
 }
 
@@ -361,6 +369,7 @@ footer {
 
 /* Keresés: biztos elrejtés */
 .card.hidden { display: none !important; }
+
 
 
 
