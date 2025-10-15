@@ -329,6 +329,65 @@ footer {
   }
 }
 
+/* ===== Kártya: egységes magasság + középre igazítás (override) ===== */
+.card{
+  display: flex !important;
+  flex-direction: column !important;
+  height: 420px;                /* egységes magasság */
+}
+
+/* Kép terület felül, arányosan */
+.card .media{
+  flex: 1 0 55%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #0b0c10;
+  border-bottom: 1px solid rgba(212,175,55,.25);
+}
+.card .media img{
+  max-width: 92%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,.45));
+}
+
+/* Név + leírás közepe (vízszintesen és függőlegesen is) */
+.card .content{
+  flex: 1 0 45%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.card .content .title{
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-2);
+  text-shadow: 0 0 10px rgba(247,215,116,.25);
+  text-align: center !important;
+}
+.card .content .desc{
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-line;      /* Sheets Alt+Enter sortörés megmarad */
+  overflow-wrap: anywhere;
+  text-align: center !important;
+}
+
+/* Mobilon engedjük nőni a kártyát, ha hosszabb a szöveg */
+@media (max-width: 600px){
+  .card{ height: auto; min-height: 380px; }
+}
+
+
+
 
 
 
