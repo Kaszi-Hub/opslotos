@@ -94,80 +94,80 @@
       </div>
     </div>
 
-    <script>
-      // Google Sheets azonosító (az URL-ből)
-      const SHEET_ID = "1O0xfpBB1UBMqdurq9R7rN4G7zBqiFs7bRhvpmDrfDdY";
+  <script>
+  // Google Sheets azonosító (az URL-ből)
+  const SHEET_ID = "100xfpBB1UBMqdurq9R7nN4G7zBqiFs7bRhvpmDrfDdY";
 
-      const grid = document.getElementById("casinoGrid");
-      const q = document.getElementById("q");
+  const grid = document.getElementById("casinoGrid");
+  const q = document.getElementById("q");
 
-      // Státusz kijelző (betöltés / hiba)
-      const statusEl = document.createElement("div");
-      statusEl.id = "status";
-      statusEl.style.textAlign = "center";
-      statusEl.style.margin = "16px 0";
-      statusEl.style.color = "#b7b7b7";
-      statusEl.textContent = "Betöltés…";
-      grid.after(statusEl);
+  // Státusz kijelző (betöltés / hiba)
+  const statusEl = document.createElement("div");
+  statusEl.id = "status";
+  statusEl.style.textAlign = "center";
+  statusEl.style.margin = "16px 0";
+  statusEl.style.color = "#b7b7b7";
+  statusEl.textContent = "Betöltés…";
+  grid.after(statusEl);
 
-      // Google Sheet beolvasás
-      async function loadCasinos() {
-        try {
-          const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-          const res = await fetch(url);
-          const text = await res.text();
+  // Google Sheet beolvasás
+  async function loadCasinos() {
+    try {
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+      const res = await fetch(url);
+      const text = await res.text();
 
-          // Sheets JSON válasz feldolgozása
-          const json = JSON.parse(text.substring(47, text.length - 2));
-          const rows = json.table.rows || [];
+      // Sheets JSON válasz feldolgozása
+      const json = JSON.parse(text.substring(47, text.length - 2));
+      const rows = json.table.rows || [];
 
-          // régi elemek törlése
-          grid.innerHTML = "";
+      // régi elemek törlése
+      grid.innerHTML = "";
 
-          rows.forEach((r) => {
-            const [name, description, image, link] = (r.c || []).map((c) =>
-              c ? c.v : ""
-            );
+      // Fejléc kihagyása → a második sortól kezdjük
+      rows.slice(1).forEach((r) => {
+        const [name, description, image, link] = (r.c || []).map((c) => (c ? c.v : ""));
 
-            if (!name || !link) return; // kötelező adatok
+        if (!name || !link) return; // kötelező adatok
 
-            const cardHTML = `
-              <a class="card" href="${link}" target="_blank">
-                <div class="media">
-                  <img src="${image || ""}" alt="${name} logó" loading="lazy" decoding="async">
-                </div>
-                <div class="content">
-                  <div class="title">${name}</div>
-                  <div class="desc">${description || ""}</div>
-                </div>
-              </a>
-            `;
-            grid.insertAdjacentHTML("beforeend", cardHTML);
-          });
-
-          if (!grid.children.length) {
-            statusEl.textContent = "Nincs megjeleníthető kaszinó.";
-          } else {
-            statusEl.remove();
-          }
-        } catch (err) {
-          console.error("Hiba a Sheet beolvasásakor:", err);
-          statusEl.textContent = "❌ Hiba: nem sikerült beolvasni a táblázatot.";
-        }
-      }
-
-      // Kereső funkció
-      q?.addEventListener("input", () => {
-        const t = q.value.trim().toLowerCase();
-        grid.querySelectorAll(".card").forEach((card) => {
-          const text = card.textContent.toLowerCase();
-          card.style.display = text.includes(t) ? "" : "none";
-        });
+        const cardHTML = `
+          <a class="card" href="${link}" target="_blank">
+            <div class="media">
+              <img src="${image || ""}" alt="${name} logó" loading="lazy" decoding="async">
+            </div>
+            <div class="content">
+              <div class="title">${name}</div>
+              <div class="desc">${description || ""}</div>
+            </div>
+          </a>
+        `;
+        grid.insertAdjacentHTML("beforeend", cardHTML);
       });
 
-      // Betöltés indítása
-      loadCasinos();
-    </script>
+      if (!grid.children.length) {
+        statusEl.textContent = "Nincs megjeleníthető kaszinó.";
+      } else {
+        statusEl.remove();
+      }
+    } catch (err) {
+      console.error("Hiba a Sheet beolvasásakor:", err);
+      statusEl.textContent = "❌ Hiba: nem sikerült beolvasni a táblázatot.";
+    }
+  }
+
+  // Kereső funkció
+  q?.addEventListener("input", () => {
+    const t = q.value.trim().toLowerCase();
+    grid.querySelectorAll(".card").forEach((card) => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = text.includes(t) ? "" : "none";
+    });
+  });
+
+  // Betöltés indítása
+  loadCasinos();
+</script>
+
 
     <footer>
       <a
@@ -196,3 +196,4 @@
     </footer>
   </body>
 </html>
+
