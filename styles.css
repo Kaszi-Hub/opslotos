@@ -160,110 +160,65 @@ footer {
 /* -----------------------------------------------------
    Kártyarács (Casino grid)
 ----------------------------------------------------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* mindig 3 oszlop */
-  gap: 20px;                             /* távolság a kártyák között */
-  justify-items: center;                 /* középre igazítás */
+/* ==== 3 oszlop, középre igazítva ==== */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(3, 320px); /* 3 stabil oszlop */
+  gap:24px;
+  justify-content:center;                  /* rács középre */
 }
 
-/* -----------------------------------------------------
-   Kártya (mini, kompakt verzió)
------------------------------------------------------ */
-.card {
-  width: 220px;               /* fix szélesség */
-  height: 280px;              /* fix magasság */
-  background: linear-gradient(180deg, rgba(212,175,55,.09), transparent 130%), var(--card);
-  color: var(--text);
-  border-radius: 12px;
-  border: 1px solid rgba(212,175,55,.55);
-  text-decoration: none;
-  overflow: hidden;
-  box-shadow:
-    0 0 0 1px rgba(247,215,116,.18) inset,
-    0 6px 14px rgba(0,0,0,.45),
-    0 0 18px rgba(247,215,116,.12);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+/* ==== kompaktabb, szélesebb kártya ==== */
+.card{
+  width:320px;               /* szélesebb, arányosabb */
+  height:300px;              /* alacsonyabb (eddig 380–420 volt) */
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
 }
 
-.card:hover {
-  transform: translateY(-2px);
-  border-color: var(--gold-2);
-  box-shadow:
-    0 0 0 1px rgba(247,215,116,.32) inset,
-    0 10px 22px rgba(0,0,0,.6),
-    0 0 28px rgba(247,215,116,.22);
+/* kép / tartalom arány: kb. 50/50 */
+.media{
+  height:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0b0c10;
+  border-bottom:1px solid rgba(212,175,55,.25);
+}
+.media img{
+  max-width:88%;
+  max-height:90%;
+  object-fit:contain;
 }
 
-.card:hover,
-.card:focus-visible {
-  transform: translateY(-2px);
-  border-color: var(--gold-2);
-  box-shadow:
-    0 0 0 1px rgba(247,215,116,.32) inset,
-    0 10px 18px rgba(0,0,0,.6),
-    0 0 26px rgba(247,215,116,.22);
-  outline: none;
+/* név + leírás középen, tömörebb typó */
+.content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:12px;
+}
+.title{
+  font-size:16px;            /* kicsit kisebb */
+  margin:0 0 6px 0;
+}
+.desc{
+  font-size:13px;
+  line-height:1.35;
+  white-space:pre-line;
+  margin:0;
 }
 
-/* --- Kép (kisebb, de megtartja az arányt) --- */
-.media {
-  width: 100%;
-  height: 45%;
-  background: #0b0c10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid rgba(212,175,55,.25);
-}
-.media img {
-  max-width: 85%;
-  max-height: 90%;
-  object-fit: contain;
-}
-
-/* --- Tartalom --- */
-.content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  box-sizing: border-box;
-}
-.title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--gold-2);
-  text-shadow: 0 0 8px rgba(247,215,116,.25);
-  margin-bottom: 4px;
-}
-.desc {
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.35;
-  margin: 0;
-  white-space: pre-line;
-  text-align: center;
-}
-
-/* -----------------------------------------------------
-   Mobil nézet: 1 oszlop
------------------------------------------------------ */
-@media (max-width: 800px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  .card {
-    width: 90%;
-    height: auto;
-  }
+/* mobil: 1 oszlop, szélesebb kártya, auto magasság */
+@media (max-width: 900px){
+  .grid{ grid-template-columns: 1fr; }
+  .card{ width:92vw; max-width:520px; height:auto; }
+  .media{ height:200px; } /* fix képmagasság, szép arány */
 }
 
 
@@ -369,6 +324,7 @@ footer {
 
 /* Keresés: biztos elrejtés */
 .card.hidden { display: none !important; }
+
 
 
 
