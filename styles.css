@@ -386,6 +386,11 @@ footer {
   .card{ height: auto; min-height: 380px; }
 }
 
+/* Keresés: biztos elrejtés */
+.card.hidden { display: none !important; }
+
+
+
 
 
 
