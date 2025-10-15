@@ -243,6 +243,9 @@ footer {
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 3.6em;
+   white-space: pre-line;
+
+
 }
 
 /* -----------------------------------------------------
@@ -286,3 +289,4 @@ footer {
     transition: none;
   }
 }
+
