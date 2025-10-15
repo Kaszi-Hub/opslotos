@@ -156,11 +156,15 @@
   }
 
   // Kereső funkció
+  const q = document.getElementById("q");
+  const grid = document.getElementById("casinoGrid");
+
   q?.addEventListener("input", () => {
     const t = q.value.trim().toLowerCase();
     grid.querySelectorAll(".card").forEach((card) => {
       const text = card.textContent.toLowerCase();
-      card.style.display = text.includes(t) ? "" : "none";
+      const match = text.includes(t);
+      card.classList.toggle("hidden", !match); // ⬅️ EZ a lényeg
     });
   });
 
@@ -196,5 +200,6 @@
     </footer>
   </body>
 </html>
+
 
 
