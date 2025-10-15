@@ -222,26 +222,32 @@ footer {
 }
 
 .content {
-  padding: 16px 16px 18px;
-  display: grid;
-  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* függőleges középre igazítás */
+  align-items: center;       /* vízszintes középre igazítás */
+  text-align: center;
+  padding: 24px 16px;
+  height: 100%;              /* kitölti a rendelkezésre álló helyet */
+  box-sizing: border-box;
 }
 
 .title {
   font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.2px;
+  letter-spacing: .2px;
   color: var(--gold-2);
-  text-shadow: 0 0 10px rgba(247, 215, 116, 0.25);
+  text-shadow: 0 0 10px rgba(247, 215, 116, .25);
+  margin-bottom: 10px;
 }
 
 .desc {
   color: var(--muted);
   font-size: 14px;
-  white-space: pre-line;       /* ⬅️ megtartja a sortöréseket */
-  overflow-wrap: anywhere;     /* ne lógjon ki a hosszú szöveg */
-  line-height: 1.5;            /* kicsit szellősebb legyen */
-  margin-top: 4px;
+  white-space: pre-line;      /* több soros tördelés */
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+  margin: 0;                  /* eltávolítja a felesleges margókat */
 }
 
 
@@ -286,5 +292,6 @@ footer {
     transition: none;
   }
 }
+
 
 
