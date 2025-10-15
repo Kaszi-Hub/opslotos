@@ -238,15 +238,12 @@ footer {
 .desc {
   color: var(--muted);
   font-size: 14px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 3.6em;
-   white-space: pre-line;
-
-
+  white-space: pre-line;       /* ⬅️ megtartja a sortöréseket */
+  overflow-wrap: anywhere;     /* ne lógjon ki a hosszú szöveg */
+  line-height: 1.5;            /* kicsit szellősebb legyen */
+  margin-top: 4px;
 }
+
 
 /* -----------------------------------------------------
    Reszponzív beállítások
@@ -289,4 +286,5 @@ footer {
     transition: none;
   }
 }
+
 
